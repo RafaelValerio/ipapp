@@ -7,4 +7,6 @@
 	<author href="http://www.kooba.com.br" email="contato@kooba.com.br">
 		Kooba
 	</author>
+	<icon src="icon.jpg" />
+	<gap:splash src="splash.jpg"/>
 </widget>	
