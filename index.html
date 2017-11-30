@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>IPA - Louvores</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="icons/material.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="topo-fixo z-depth-1">
+    <div class="#14592A teal darken-3 white-text valign-wrapper">
+        <img src="img/logo-ipa.png" alt="" width="80px">
+        <h5 class="titulo"> Louvores</h5>
+        <div>
+            <i data-activates="submenu" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle dropdown-button">more_vert</i>
+        </div>
+        <ul id="submenu" class="dropdown-content">
+        	<li><a class="black-text acao-limpar">Recarregar</a></li>
+        </ul>
+    </div>
+    <ul class="tabs #14592A teal darken-3">
+        <li class="tab"><a href="#agenda" class="white-text waves-effect waves-light">Agenda</a></li>
+        <li class="tab"><a href="#musicas" class="white-text waves-effect waves-light">Músicas</a></li>
+    </ul>
+</div>
+    <div class="section" id="agenda">
+        <!--<h6 class="container green-text">Dezembro/2017</h6>-->
+        <div class="collection">
+           
+        </div>
+    </div>
+    <div class="section" id="musicas">
+        <div class="collection">
+            
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+    
+    $(document).ready(function(){
+        listaDatas();
+        listaMusicas('');
+    });
+    //$( "a.offsite" ).live( "click", function() {
+    $( document ).on( "click", "#agenda a.collection-item",function(){
+        listaMusicas($(this).attr('rel'));
+        $( "li.tab a[href=#musicas]" ).trigger( "click" );
+    }); 
+
+    
+    function listaDatas(){
+
+        var html = "";
+          $.ajax({
+            type: "POST",
+            url: "http://kooba.com.br/IPApp/agenda.php",
+            async: false,
+            dataType: "json", 
+            success: function (result) {
+ 
+                //if(result == true){
+                   //redireciona o usuario para pagina
+                
+                for(var data in result) {
+                   html += ' <a rel="'+ result[data]['id'] +'" class=" collection-item waves-effect black-text" >'+result[data]['data_formatada'] + ' - ' + result[data]['grupo_louvor'] +'</a>';
+                   //alert(result[musica]['nome']);
+                }
+                  $('#agenda .collection').html(html); 
+                  /*$.mobile.changePage("#index", {
+                        transition : "slidefade"
+                    });*/
+ 
+                //}
+            },error: function(xhr,e,t){
+                console.log(xhr.responseText);                
+            }
+        });  
+    }
+
+
+    function listaMusicas(data_id){
+        var html = "";
+        $('#musicas .collection').html(html);
+          $.ajax({
+            type: "POST",
+            url: "http://kooba.com.br/IPApp/musicas.php",
+            data: {data_id:data_id}, 
+            async: false,
+            dataType: "json", 
+            success: function (result) {
+ 
+                //if(result == true){
+                   //redireciona o usuario para pagina
+                for(var musica in result) {
+                   html += '<a class="collection-item waves-effect black-text" href="musica.php?id='+result[musica]['id']+'">'+result[musica]['nome']+'<span class="badge">'+result[musica]['tom']+'</span></a>';
+                   //alert(result[musica]['nome']);
+                }
+                  $('#musicas .collection').html(html); /*$.mobile.changePage("#index", {
+                        transition : "slidefade"
+                    });*/
+ 
+                //}
+            },error: function(xhr,e,t){
+                console.log(xhr.responseText);                
+            }
+        });  
+    }
+         
+     
+    </script>
+</body>
+</html>

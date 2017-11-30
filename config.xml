@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" version="1.0.0" id="br.com.kooba.ipapp">
+	<name>IPApp - Louvores</name>
+	<description>
+		App para ser utilizado no grupo de louvor da IPA
+	</description>	
+	<author href="http://www.kooba.com.br" email="contato@kooba.com.br">
+		Kooba
+	</author>
+</widget>	
