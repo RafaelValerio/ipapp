@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
-	<script src="js/bootstrap.min.js" ></script>
+
 	<style>
 		h4
 		{
@@ -63,5 +62,51 @@
     
 
 </div>
+ <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+     
+    $(document).ready(function(){
+    	var url_string = window.location.href; // www.test.com?filename=test
+	    var url = new URL(url_string);
+	    var paramValue = url.searchParams.get("id");
+	    //alert(paramValue);
+        buscaMusica(paramValue);
+    });
 
+
+
+    function buscaMusica(paramValue){
+        //var html = "";
+        //$('#musicas .collection').html(html);
+          $.ajax({
+            type: "GET",
+            url: "http://kooba.com.br/IPApp/musica.php",
+            data: {"id":paramValue}, 
+            async: false,
+            dataType: "json", 
+            success: function (result) {
+ 	
+                //if(result == true){
+                   //redireciona o usuario para pagina
+                //for(var musica in result) {
+                   $(".cab1 b").html(result['nome']);
+                   $(".intro b").html(result['introducao']);
+                   $("pre").append(result['musica']);
+                   //alert(result['nome']);
+                //}
+                  //$('#musicas .collection').html(html); 
+                  /*$.mobile.changePage("#index", {
+                        transition : "slidefade"
+                    });*/
+ 
+                //}
+            },error: function(xhr,e,t){
+                console.log(xhr.responseText);                
+            }
+        });  
+    }
+         
+     
+    </script>
 </body></html>
