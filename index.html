@@ -51,6 +51,12 @@
         $( "li.tab a[href=#musicas]" ).trigger( "click" );
     }); 
 
+    $( document ).on( "click", "#musicas a.collection-item",function(){
+        //listaMusicas($(this).attr('rel'));
+        alert($(this).attr('rel'));
+        //$( "li.tab a[href=#musicas]" ).trigger( "click" );
+    }); 
+
     
     function listaDatas(){
 
@@ -96,7 +102,7 @@
                 //if(result == true){
                    //redireciona o usuario para pagina
                 for(var musica in result) {
-                   html += '<a class="collection-item waves-effect black-text" href="musica.php?id='+result[musica]['id']+'">'+result[musica]['nome']+'<span class="badge">'+result[musica]['tom']+'</span></a>';
+                   html += '<a  rel="'+ result[musica]['id'] +'"class="collection-item waves-effect black-text" href="musica.html?id='+result[musica]['id']+'">'+result[musica]['nome']+'<span class="badge">'+result[musica]['tom']+'</span></a>';
                    //alert(result[musica]['nome']);
                 }
                   $('#musicas .collection').html(html); /*$.mobile.changePage("#index", {
