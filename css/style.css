@@ -20,7 +20,8 @@ body{
     padding-top:125px;
 }
 form {
-    margin-left: 2%;
+    margin-left: 5%;
+    float:left;
     width: 75%;
     /*padding: 0;
     border: 0;
