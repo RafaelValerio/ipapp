@@ -11,24 +11,8 @@
 </head>
 <body>
     <div class="topo-fixo z-depth-1">
-    <div class="topo-titulo ">
-    	
-    	<nav class="#14592A teal darken-3 white-text">
-		  <div class="">
-		    <img src="img/logo-ipa.png" alt="" id="logo" width="80px">
-		    <form id="pesquisa">
-		        <input placeholder="Pesquisar..."  type="text">
-		    </form>
-		    <ul class="right">
-		      <li><i id="icon_fechar_pesquisa" class="material-icons waves-effect waves-light waves-circle">close</i></li>
-		      <li><i id="icon_atualizar" class="material-icons waves-effect waves-light waves-circle">refresh</i></li>
-		      <li><i id="icon_pesquisa" class="material-icons waves-effect waves-light waves-circle">search</i></li>
-		    </ul>
-		  </div>
-		</nav>
-
-
-        <!--<img src="img/logo-ipa.png" alt="" id="logo" width="80px">
+    <div class="topo-titulo #14592A teal darken-3 white-text valign-wrapper">
+        <img src="img/logo-ipa.png" alt="" id="logo" width="80px">
         <h5 class="titulo"></h5>
         <form id="pesquisa">
         <input placeholder="Pesquisar..."  type="text">
@@ -39,9 +23,9 @@
                     <i id="icon_atualizar" class="material-icons waves-effect waves-light waves-circle">refresh</i>
                    <i  id="icon_pesquisa" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle dropdown-button">search</i>
 
-         </div>-->    
+            
             <!--<i data-activates="submenu" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle dropdown-button">search</i>-->
-       
+        </div>
        <!--<ul id="submenu" class="dropdown-content">
         	<li><a class="black-text acao-limpar">Informações</a></li>
         </ul>-->
@@ -161,7 +145,7 @@
                 //if(result == true){
                    //redireciona o usuario para pagina
                 for(var musica in result) {
-                   html += '<a  rel="'+ result[musica]['id'] +'"class="collection-item waves-effect black-text" href="musica.html">'+result[musica]['nome']+'<span class="badge">'+result[musica]['tom']+'<i data-activates="submenu" datas-gutter="5" data-contrainwidth="false" class="material-icons">more_vert</i></span></a>';
+                   html += '<a  rel="'+ result[musica]['id'] +'"class="collection-item waves-effect black-text" href="musica.html">'+result[musica]['nome']+'<span class="badge">'+result[musica]['tom']+'</span></a>';
                    //alert(result[musica]['nome']);
                 }
                   $('#musicas .collection').html(html); /*$.mobile.changePage("#index", {
