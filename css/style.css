@@ -19,6 +19,15 @@ body{
 .section{
     padding-top:125px;
 }
-img{
+form {
+    margin-left: 5%;
+    width: 90%;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+img, form #pesquisa{
     margin-left: 5%;
 }
