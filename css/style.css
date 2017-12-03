@@ -20,14 +20,13 @@ body{
     padding-top:125px;
 }
 form {
-    height: 10px;
-    /*margin-left: 5%;
+    margin-left: 5%;
     width: 75%;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;*/
+    vertical-align: baseline;
 }
 img, form #pesquisa{
     margin-left: 5%;
