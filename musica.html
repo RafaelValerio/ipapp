@@ -4,63 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="icons/material.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
 	<style>
-		h4
-		{
-				margin: 0;
-				display:inline;
-				font-style: inherit;
-				font-size: 100%;
-				font-family: inherit;
-				vertical-align: baseline;
-				font-weight: bold;
-
-		}
-		.all
-		{
-				margin:30px;
-		}
-		.cab1
-		{
-				font-family:Arial,Helvetica,sans-serif;
-				font-size:20px;
-		}
-		.cab2
-		{
-				font-family:Arial,Helvetica,sans-serif;
-				font-size:15px;
-		}
-		.intro
-		{
-				font-family:Arial,Helvetica,sans-serif;
-				margin-bottom: 50px;
-		}
-		.cifra
-		{
-				font-weight: bold;
-		}
-		.b
-		{
-				color:#vvv;
-		}
-		pre{
-			font-size:1em;
-		}
+		
 
 		</style>
     <title>IPA</title>
 </head>
 <body>
+	<div class="topo-fixo z-depth-1">
+    <div class="topo-titulo #14592A teal darken-3 white-text valign-wrapper">
+        
+        
+        <div>
+                    <i id="icon_voltar" class="material-icons waves-effect waves-light waves-circle">keyboard_backspace</i>
+                    
+        </div>
+       <h5 class="titulo"></h5>
+    </div>
+    <ul class="tabs #14592A teal darken-3">
+        <li class="tab"><a href="#cifra" class="white-text waves-effect waves-light">Cifra</a></li>
+        <li class="tab"><a href="#info" class="white-text waves-effect waves-light">Informações</a></li>
+    </ul>
+</div>
+    <!--<div class="section" id="agenda">
+        <h6 class="container green-text">Dezembro/2017</h6>
+        <div class="collection">
+           
+        </div>
+    </div>-->
+    <div class="section" id="info">
+        <div class="collection">
+            
+        </div>
+    </div>
 
 <div class="all">
-<div class="cab1">
+<!--<div class="cab1">
 	<strong><b></b></strong><br>
 </div>
 <div class="cab2">
 	<span></span>
-</div>
-<pre class="intro" >Intro: <b></b>
+</div>-->
+<pre class="intro section" id="cifra">Intro: <b></b>
 
 </pre>
     
@@ -77,8 +67,13 @@
 	    //alert(paramValue);
 	    var paramValue = JSON.parse(sessionStorage.getItem('id'));
         buscaMusica(paramValue);
+        infoMusica(paramValue);
     });
 
+
+    $('#icon_voltar').click(function() {
+		history.back();
+	});
 
 
     function buscaMusica(paramValue){
@@ -87,7 +82,7 @@
           $.ajax({
             type: "POST",
             url: "http://kooba.com.br/IPApp/musica.php",
-            data: {"id":paramValue}, 
+            data: {"parametro":"buscaMusica", "id":paramValue}, 
             async: false,
             dataType: "json", 
             success: function (result) {
@@ -95,12 +90,44 @@
                 //if(result == true){
                    //redireciona o usuario para pagina
                 //for(var musica in result) {
-                   $(".cab1 b").html(result['nome']);
+                   //$(".cab1 b").html(result['nome']);
+                   $(".titulo").html(result['nome']);
                    $(".intro b").html(result['introducao']);
                    $("pre").append(result['musica']);
                    //alert(result['nome']);
                 //}
                   //$('#musicas .collection').html(html); 
+                  /*$.mobile.changePage("#index", {
+                        transition : "slidefade"
+                    });*/
+ 
+                //}
+            },error: function(xhr,e,t){
+                console.log(xhr.responseText);                
+            }
+        });  
+    }
+
+    function infoMusica(paramValue){
+        //var html = "";
+        //$('#musicas .collection').html(html);
+          $.ajax({
+            type: "POST",
+            url: "http://kooba.com.br/IPApp/musica.php",
+            data: {"parametro":"infoMusica", "id":paramValue}, 
+            async: false,
+            dataType: "json", 
+            success: function (result) {
+ 				html = "<b>Tocadas em:</b><br />";
+ 				console.table(result);
+                //if(result == true){
+                   //redireciona o usuario para pagina
+                for(var musica in result) {
+                   //$(".cab1 b").html(result['nome']);
+                   html += result[musica]['data_formatada'] + ' - ' + result[musica]['grupo_louvor'] ;
+                   //alert(result['nome']);
+                }
+                  $('#info .collection').html(html); 
                   /*$.mobile.changePage("#index", {
                         transition : "slidefade"
                     });*/

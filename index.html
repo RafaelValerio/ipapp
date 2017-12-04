@@ -15,20 +15,14 @@
         <img src="img/logo-ipa.png" alt="" id="logo" width="80px">
         <h5 class="titulo"></h5>
         <form id="pesquisa">
-        <input placeholder="Pesquisar..."  type="text">
+        	<input placeholder="Pesquisar..."  type="text">
        </form>
-        
         <div>
                     <i id="icon_fechar_pesquisa" class="material-icons waves-effect waves-light waves-circle">close</i>
                     <i id="icon_atualizar" class="material-icons waves-effect waves-light waves-circle">refresh</i>
-                   <i  id="icon_pesquisa" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle dropdown-button">search</i>
-
-            
-            <!--<i data-activates="submenu" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle dropdown-button">search</i>-->
+                   <i  id="icon_pesquisa" datas-gutter="5" data-contrainwidth="false" class="material-icons waves-effect waves-light waves-circle">search</i>
         </div>
-       <!--<ul id="submenu" class="dropdown-content">
-        	<li><a class="black-text acao-limpar">Informações</a></li>
-        </ul>-->
+       
     </div>
     <ul class="tabs #14592A teal darken-3">
         <li class="tab"><a href="#agenda" class="white-text waves-effect waves-light">Agenda</a></li>
@@ -85,6 +79,11 @@
          $('#pesquisa').hide();
          $('#logo').show();
     });
+
+    $('#icon_detalhes').on("click", function(){
+         alert('this').parent().html();
+    });
+    
     //$( "a.offsite" ).live( "click", function() {
     $( document ).on( "click", "#agenda a.collection-item",function(){
         listaMusicas($(this).attr('rel'),'');
